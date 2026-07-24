@@ -105,7 +105,7 @@ namespace tlf {
     }
 
     template<typename DataType = std::string>
-    DataType input(const std::string_view text) {
+    DataType input(std::string_view text) {
 
         std::cout << text;
 
