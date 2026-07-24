@@ -107,6 +107,8 @@ namespace tlf {
     template<typename DataType = std::string>
     DataType input(std::string_view text) {
 
+        tcflush(STDIN_FILENO, TCIFLUSH);
+
         std::cout << text;
 
         DataType result;
