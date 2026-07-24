@@ -18,7 +18,7 @@
 
 #pragma once
 
-#ifdef __linux__ // LINUX
+#ifdef __linux__
 
 #include <iostream>
 #include <string>
@@ -100,14 +100,12 @@ namespace tlf {
         }
     };
 
-    inline void sleep(size_t ms) {
+    inline void sleep(std::size_t ms) {
         std::this_thread::sleep_for(std::chrono::milliseconds(ms));
-
-        tcflush(STDIN_FILENO, TCIFLUSH);
     }
 
     template<typename DataType = std::string>
-    DataType input(const std::string &text) {
+    DataType input(const std::string_view text) {
 
         std::cout << text;
 
@@ -160,7 +158,7 @@ namespace tlf {
                 tlf::console::magenta
             };
 
-            for (size_t i {0}; i < text.size(); ++i) {
+            for (std::size_t i {0}; i < text.size(); ++i) {
                 char c {text[i]};
                 std::cout << rainbow_colors[i % 6] << c;
             }
@@ -168,7 +166,7 @@ namespace tlf {
         }
 
         inline void print_typed(std::string_view text, int delay_ms = 50) {
-            for (size_t i {0}; i < text.size(); ++i) {
+            for (std::size_t i {0}; i < text.size(); ++i) {
                 std::cout << text[i] << std::flush;
                 tlf::sleep(delay_ms);
             }
@@ -187,9 +185,9 @@ namespace tlf {
             static std::random_device rd;
             static std::mt19937 gen(rd());
 
-            std::uniform_int_distribution<DataType> distr(min, max);
+            std::uniform_int_distribution<DataType> distribution(min, max);
 
-            return distr(gen);
+            return distribution(gen);
         }
 
         inline bool chance(double chance) {
@@ -197,13 +195,13 @@ namespace tlf {
             static std::random_device rd;
             static std::mt19937 gen(rd());
 
-            std::uniform_real_distribution<double> distr(0.0, 100.0);
+            std::uniform_real_distribution<double> distribution(0.0, 100.0);
 
-            return distr(gen) <= chance;
+            return distribution(gen) <= chance;
         }
 
     } // namespace math
 
 } // namespace tlf
 
-#endif // LINUX
+#endif // __linux__
