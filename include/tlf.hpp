@@ -34,7 +34,6 @@
 #include <unistd.h>
 #include <termios.h>
 #include <string_view>
-#include <cstdint>
 
 namespace tlf {
 
@@ -86,13 +85,13 @@ namespace tlf {
             time = std::chrono::high_resolution_clock::now();
         }
 
-        auto elapsed_ms() const {
+        [[nodiscard]] auto elapsed_ms() const {
             const auto now = std::chrono::high_resolution_clock::now();
 
             return std::chrono::duration_cast<std::chrono::milliseconds>(now - time).count();
         }
 
-        auto elapsed_s() const {
+        [[nodiscard]] auto elapsed_s() const {
             auto now = std::chrono::high_resolution_clock::now();
             std::chrono::duration<double> elapsed = now - time;
 
@@ -148,32 +147,6 @@ namespace tlf {
         inline constexpr std::string_view magenta {"\033[35m"};
         inline constexpr std::string_view reset {"\033[0m"};
         // *---colors---* //
-
-        inline void print_rainbow(std::string_view text) {
-
-            static constexpr std::array<std::string_view, 6> rainbow_colors {
-                tlf::console::red,
-                tlf::console::green,
-                tlf::console::yellow,
-                tlf::console::cyan,
-                tlf::console::blue,
-                tlf::console::magenta
-            };
-
-            for (std::size_t i {0}; i < text.size(); ++i) {
-                char c {text[i]};
-                std::cout << rainbow_colors[i % 6] << c;
-            }
-            std::cout << tlf::console::reset << '\n';
-        }
-
-        inline void print_typed(std::string_view text, int delay_ms = 50) {
-            for (std::size_t i {0}; i < text.size(); ++i) {
-                std::cout << text[i] << std::flush;
-                tlf::sleep(delay_ms);
-            }
-            std::cout << '\n';
-        }
 
     } // namespace console
 
