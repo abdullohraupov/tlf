@@ -12,7 +12,7 @@ A lightweight utility library.
 
 ## Requirements
 
-- **Operating System**: Linux, Windows, MacOS and BSD systems supported.
+- **Operating System**: Linux, Windows, MacOS and BSD systems are supported.
 - **Compiler**: Any C++ compiler supporting at least **C++17**.
 
 ## Installation
