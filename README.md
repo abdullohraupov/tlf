@@ -56,8 +56,8 @@ int main() {
     std::vector<int> scores = {10, 42, 5, 99, 21};
     tlf::print_container(scores);
 
-    if (auto max_val = tlf::get_max(scores.begin(), scores.end())) {
-        std::cout << "Max score: " << *max_val << '\n';
+    if (tlf::contains(scores.begin(), scores.end(), 10)) {
+        std::cout << "scores contains 10!";
     }
 
     // 4. Randomization helpers
