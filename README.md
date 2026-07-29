@@ -4,7 +4,7 @@ A lightweight utility library.
 
 ## Features
 
-- **Console Utilities**: ANSI color definitions, rainbow text output, and typewriter effect (`print_typed`).
+- **Console Utilities**: ANSI color definitions.
 - **Smart Input**: Type-safe terminal input validation (`input`) with automatic stream cleanup.
 - **Container Helpers**: Clean printing, bound-safe min/max extraction, and element search.
 - **Math Helpers**: Modern `<random>` wrappers for integer generation and percentage-based chance checks.
@@ -45,14 +45,11 @@ target_link_libraries(my_program PRIVATE tlf::tlf)
 #include <vector>
 
 int main() {
-    // 1. Colorful and typed console output
-    tlf::console::print_rainbow("Welcome to TLF Library!");
-    tlf::console::print_typed("Loading utilities...", 40);
 
-    // 2. Safe and validated input
+    // Safe and validated input
     int age = tlf::input<int>("Enter your age: ");
 
-    // 3. Container utilities
+    // Container utilities
     std::vector<int> scores = {10, 42, 5, 99, 21};
     tlf::print_container(scores);
 
@@ -60,7 +57,7 @@ int main() {
         std::cout << "scores contains 10!";
     }
 
-    // 4. Randomization helpers
+    // Randomization helpers
     if (tlf::math::chance(75.5)) {
         int lucky_num = tlf::math::random(1, 100);
         std::cout << "Lucky number: " << lucky_num << '\n';
