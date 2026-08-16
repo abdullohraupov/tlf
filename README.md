@@ -1,8 +1,12 @@
-# TLF
+# **TLF** — Tiny Lightweight Feature-Kit 🧰
+
+[![C++17](https://img.shields.io/badge/C%2B%2B-17-blue.svg)](https://en.cppreference.com/w/cpp/compiler_support)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS%20%7C%20BSD-lightgrey.svg)](#requirements)
 
 A lightweight utility library.
 
-## Features
+## Features ✨
 
 - **Console Utilities**: ANSI color definitions.
 - **Smart Input**: Type-safe terminal input validation (`input`) with automatic stream cleanup.
@@ -10,12 +14,13 @@ A lightweight utility library.
 - **Math Helpers**: Modern `<random>` wrappers for integer generation and percentage-based chance checks.
 - **Timing**: High-resolution performance timer class.
 
-## Requirements
+## Requirements 📋
 
+- **Build System**: CMake
 - **Operating System**: Linux, Windows, MacOS and BSD systems are supported.
-- **Compiler**: Any C++ compiler supporting at least **C++17**.
+- **Compiler**: **C++17** compliant compiler (GCC 8+, Clang 7+, MSVC 2019+)
 
-## Installation
+## Installation 🛠️
 
 The library supports standard CMake installation. You can install it system-wide using the following commands:
 
