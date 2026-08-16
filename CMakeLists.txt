@@ -6,7 +6,7 @@ add_library(tlf INTERFACE
         include/tlf/core.hpp
         include/tlf/console.hpp
         include/tlf/math.hpp
-        tests/main.cpp)
+        include/tlf/macro.hpp)
 
 target_include_directories(tlf INTERFACE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

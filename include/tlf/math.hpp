@@ -1,38 +1,37 @@
 #pragma once
 
-#if defined(__linux__) || defined (__unix__) || defined(__APPLE__)
-    #define UNIX 1
-#endif
-
-#if defined(_WIN32) || defined (_WIN64)
-    #define WINDOWS 1
-#endif
+#include <tlf/macro.hpp>
 
 #include <random>
 
 namespace tlf::math {
-
     template<typename DataType = int>
     DataType random(DataType min, DataType max) {
-
         static_assert(std::is_integral_v<DataType>, "type must be integral");
 
-        static std::random_device rd;
-        static std::mt19937 gen(rd());
+        thread_local static std::random_device rd;
+        thread_local static std::mt19937 gen(rd());
 
-        std::uniform_int_distribution<DataType> distribution(min, max);
+        using dist_type = std::conditional_t<
+            sizeof(DataType) < sizeof(int),
+            int,
+            DataType
+        >;
 
-        return distribution(gen);
+        std::uniform_int_distribution<dist_type> distribution(
+            static_cast<dist_type>(min),
+            static_cast<dist_type>(max)
+        );
+
+        return static_cast<DataType>(distribution(gen));
     }
 
     inline bool chance(const double chance) {
+        thread_local static std::random_device rd;
+        thread_local static std::mt19937 gen(rd());
 
-        static std::random_device rd;
-        static std::mt19937 gen(rd());
-
-        std::uniform_real_distribution<double> distribution(0.0, 100.0);
+        std::uniform_real_distribution distribution(0.0, 100.0);
 
         return distribution(gen) <= chance;
     }
-
 } // namespace math

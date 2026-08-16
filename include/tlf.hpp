@@ -20,6 +20,7 @@
 
 static_assert(__cplusplus >= 201703L, "Library requires at least C++17.");
 
+#include "tlf/macro.hpp"
 #include "tlf/core.hpp"
 #include "tlf/console.hpp"
 #include "tlf/math.hpp"
