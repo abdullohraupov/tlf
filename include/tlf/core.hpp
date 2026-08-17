@@ -67,7 +67,7 @@ namespace tlf {
         }
     };
 
-    inline void sleep(std::size_t ms) {
+    inline void sleep(const std::size_t ms) {
         std::this_thread::sleep_for(std::chrono::milliseconds(ms));
     }
 
