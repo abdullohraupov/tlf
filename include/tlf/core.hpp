@@ -11,6 +11,9 @@
 #include <chrono>
 #include <filesystem>
 #include <string_view>
+#include <ctime>
+#include <iomanip>
+#include <fstream>
 
 #ifdef TLF_UNIX
 #include <unistd.h>
@@ -67,6 +70,47 @@ namespace tlf {
         }
     };
 
+    class logger {
+    private:
+        std::ofstream log_file;
+
+        [[nodiscard]] static std::string get_current_time() {
+            const auto now = std::chrono::system_clock::now();
+            std::time_t time_now = std::chrono::system_clock::to_time_t(now);
+            std::tm time_info {};
+
+#           ifdef TLF_WINDOWS
+                localtime_s(&time_info, &time_now);
+#           else
+                localtime_r(&time_now, &time_info); // Linux, Mac and BSD systems
+#           endif
+
+            std::stringstream ss;
+            ss << std::put_time(&time_info, "[%Y-%m-%d %H:%M:%S]");
+            return ss.str();
+        }
+
+        void write_log(std::string_view level, std::string_view message) {
+            if (log_file.is_open()) {
+                log_file << get_current_time() << " " << level << ": " << message << '\n';
+                log_file.flush();
+            }
+        }
+
+    public:
+        explicit logger(std::string_view filename = "app.log") {
+            log_file.open(std::string(filename), std::ios::app);
+        }
+
+        ~logger() {
+            if (log_file.is_open()) log_file.close();
+        }
+
+        void info(std::string_view message) { write_log("[INFO]", message); }
+        void warning(std::string_view message) { write_log("[WARNING]", message); }
+        void error(std::string_view message) { write_log("[ERROR]", message); }
+    };
+
     inline void sleep(const std::size_t ms) {
         std::this_thread::sleep_for(std::chrono::milliseconds(ms));
     }
@@ -74,9 +118,9 @@ namespace tlf {
     template<typename DataType = std::string>
     DataType input(std::string_view text) {
 #       ifdef TLF_UNIX
-        tcflush(STDIN_FILENO, TCIFLUSH);
+            tcflush(STDIN_FILENO, TCIFLUSH);
 #       elif defined(TLF_WINDOWS)
-        FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
+            FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 #       endif
 
         std::cout << text;
