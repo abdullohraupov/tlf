@@ -1,4 +1,11 @@
 /*
+ *   ▄▄▄▄▄▄▄    ▄▄▄      ▄▄▄▄▄▄▄
+ *  █▀▀██▀▀▀▀  ▀██▀     █▀██▀▀▀
+ *     ██       ██        ██
+ *     ██       ██        ███▀
+ *     ██       ██      ▄ ██
+ *     ▀██▄    ████████ ▀██▀
+ *
  * TLF - A lightweight utility library.
  * Copyright (C) 2026 Abdulloh Raupov
  *

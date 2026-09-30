@@ -1,10 +1,8 @@
-# **TLF** — Tiny Lightweight Feature-Kit 🧰
-
-[![C++17](https://img.shields.io/badge/C%2B%2B-17-blue.svg)](https://en.cppreference.com/w/cpp/compiler_support)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS%20%7C%20BSD-lightgrey.svg)](#requirements)
+# **TLF**
 
 A lightweight utility library.
+
+---
 
 ## Features ✨
 
@@ -14,11 +12,15 @@ A lightweight utility library.
 - **Math Helpers**: Modern `<random>` wrappers for integer generation and percentage-based chance checks.
 - **Timing**: High-resolution performance timer class.
 
+---
+
 ## Requirements 📋
 
 - **Build System**: CMake
 - **Operating System**: Linux, Windows, MacOS and BSD systems are supported.
 - **Compiler**: **C++17** compliant compiler (GCC 8+, Clang 7+, MSVC 2019+)
+
+---
 
 ## Installation 🛠️
 
@@ -32,6 +34,8 @@ cmake -B build
 sudo cmake --install build
 ```
 
+---
+
 ## Integration into your project
 
 After installation, you can easily find and link the library in your own `CMakeLists.txt`:
@@ -42,6 +46,8 @@ find_package(tlf REQUIRED)
 add_executable(my_program main.cpp)
 target_link_libraries(my_program PRIVATE tlf::tlf)
 ```
+
+---
 
 ## Usage Example
 
@@ -72,6 +78,14 @@ int main() {
 }
 ```
 
+---
+
 ## License
 
-This project is licensed under the **GNU General Public License v3.0 (GPLv3)** — see the [LICENSE](LICENSE) file for details.
+<div align="center">
+
+[<img src="resources/images/gpl_v3.svg" width="256" alt="GNU GPLv3 Image">](https://www.gnu.org/licenses/gpl-3.0.html#license-text)
+
+**_Распространяется на условиях лицензии **[GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html#license-text)**, описанных в [LICENSE](LICENSE)._**
+
+</div>
